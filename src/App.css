@@ -1,3 +1,4 @@
+/*
 .App {
   text-align: center;
 }
@@ -35,4 +36,39 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+html {
+  font-size: 10px;
+}
+
+#tile_preview {
+  line-height: 0px;
+}
+
+.tilebutton {
+  width: 2rem;
+  height: 2rem;
+  margin: 1px;
+  border: 1px solid black;
+  border-radius: unset;
+  background-color: cyan;
+}
+
+.tilebutton:hover {
+  background-color: yellow;
+}
+
+.tilebutton.active_tile {
+  background-color: red;
+}
+
+.tileImg {
+  object-fit: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0px;
+  padding: 0px;
 }
