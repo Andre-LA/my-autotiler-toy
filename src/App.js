@@ -19,67 +19,57 @@ function TileImg(props) {
   // For each combination of tiles, there is one right tile, this is how
   // auto-tiling works :D
   //
-  // that said, this variable maps each tileRegion combination with an array, this array
+  // that said, the `autoTilerMap` variable maps each tileRegion combination with an array, this array
   // contains two entries, which is tileX and tileY.
 
   // note: the order that I added the entries here is from the tileset, from upper-left, left-to-right.
-  const autoTilerMap = new Map()
+  const autoTilerMap = new Array(16).fill([0, 0]);
 
   // first line of tileset
-  //b3210
-  autoTilerMap.set(0b0000, [0, 0])
-  autoTilerMap.set(0b0100, [1, 0])
-  autoTilerMap.set(0b0110, [2, 0])
-  autoTilerMap.set(0b0010, [3, 0])
+  //             b3210     x  y
+  autoTilerMap.[0b0000] = [0, 0];
+  autoTilerMap.[0b0100] = [1, 0];
+  autoTilerMap.[0b0110] = [2, 0];
+  autoTilerMap.[0b0010] = [3, 0];
 
   // second line of tileset
-  //b3210
-  autoTilerMap.set(0b1000, [0, 1])
-  autoTilerMap.set(0b1100, [1, 1])
-  autoTilerMap.set(0b1110, [2, 1])
-  autoTilerMap.set(0b1010, [3, 1])
+  //             b3210     x  y
+  autoTilerMap.[0b1000] = [0, 1];
+  autoTilerMap.[0b1100] = [1, 1];
+  autoTilerMap.[0b1110] = [2, 1];
+  autoTilerMap.[0b1010] = [3, 1];
 
   // third line of tileset
-  //b3210
-  autoTilerMap.set(0b1001, [0, 2])
-  autoTilerMap.set(0b1101, [1, 2])
-  autoTilerMap.set(0b1111, [2, 2])
-  autoTilerMap.set(0b1011, [3, 2])
+  //             b3210     x  y
+  autoTilerMap.[0b1001] = [0, 2];
+  autoTilerMap.[0b1101] = [1, 2];
+  autoTilerMap.[0b1111] = [2, 2];
+  autoTilerMap.[0b1011] = [3, 2];
 
   // fourth line of tileset
-  //b3210
-  autoTilerMap.set(0b0001, [0, 3])
-  autoTilerMap.set(0b0101, [1, 3])
-  autoTilerMap.set(0b0111, [2, 3])
-  autoTilerMap.set(0b0011, [3, 3])
+  //             b3210     x  y
+  autoTilerMap.[0b0001] = [0, 3];
+  autoTilerMap.[0b0101] = [1, 3];
+  autoTilerMap.[0b0111] = [2, 3];
+  autoTilerMap.[0b0011] = [3, 3];
 
-  let tileXY = autoTilerMap.get(tileRegion)
+  let tileXY = autoTilerMap[tileRegion];
 
-  if (tileXY !== undefined) {
-    let tileX = tileXY[0];
-    let tileY = tileXY[1];
+  let tileX = tileXY[0];
+  let tileY = tileXY[1];
 
-    const x = -18 * tileX;
-    const y = -18 * tileY;
+  const x = -18 * tileX;
+  const y = -18 * tileY;
 
-    const inline_style = tileX >= 0 && tileY >= 0 ? {
-      backgroundImage: "url('tileset.png')",
-      backgroundPosition: `${x}px ${y}px`,
-    } : {}
-
-    return (
-      <div className="tileImg" style={props.isActive ? inline_style : {}}>
-      </div>
-    );
-  } else { // remove later:
-    console.log("UNDEFINED tileXY: " + tileRegion);
-    const inline_style = { backgroundColor: "red" }
-
-    return (
-      <div className="tileImg" style={inline_style}>
-      </div>
-    );
+  const inline_style = {
+    backgroundImage: "url('tileset.png')",
+    backgroundPosition: `${x}px ${y}px`,
   }
+
+  return (
+    <div className="tileImg" style={props.isActive ? inline_style : {}}>
+    </div>
+  );
 }
 
 function TileButton(props) {
