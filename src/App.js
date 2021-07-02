@@ -74,7 +74,7 @@ function TileImg(props) {
 
 function TileButton(props) {
   return (
-    <button className={"tilebutton" + (props.isActive ? " active_tile" : "") } onClick={() => props.onClick(props.tileIndex)}>
+    <button className={"tile_button" + (props.isActive ? " active_tile" : "") } onClick={() => props.onClick(props.tileIndex)}>
       {props.tileIndex}
     </button>
   );
@@ -107,17 +107,13 @@ class TileEditor extends React.Component {
     arrTileRegion[2] = i +  1 < map.length ? map[i +  1] : false;
     arrTileRegion[3] = i + 10 < map.length ? map[i + 10] : false;
 
-    // handle map boundaries
+    // handle map boundaries]
     switch (i % 10) {
-      case 0: // left boundary
-        arrTileRegion[1] = false; // overwrite left tile as "no-tile"
-        break;
-      case 9: // right boundary
-        arrTileRegion[2] = false; // overwrite right tile as "no-tile"
-        break;
+      case 0: arrTileRegion[1] = false; break; // left boundary, overwrite left tile as "no-tile"
+      case 9: arrTileRegion[2] = false; break; // right boundary, overwrite right tile as "no-tile"
     }
 
-    let tileRegion = 0
+    let tileRegion = 0;
 
     // then, convert the array (matrix) to a bitset: 0b3210
     for (let x = 0; x < 4; x++)
@@ -153,14 +149,14 @@ class TileEditor extends React.Component {
     }
 
     return (
-      <>
-        <div id="tilebuttons">
+      <div id="tile_editor">
+        <div className="tile_editor_pannel" id="tile_editor_buttons">
           {tileEditor}
         </div>
-        <div id="tile_preview">
+        <div className="tile_editor_pannel" id="tile_editor_preview">
           {tileMap}
         </div>
-      </>
+      </div>
     );
   }
 }
@@ -169,8 +165,11 @@ function App() {
   return (
     <div className="App">
       <main>
-        <h1>Autotile test, made by André Luiz Alvares :3</h1>
-        <p>This is a test</p>
+        <h1>Autotiler toy<br/>simple autotiling and React experiment</h1>
+        <p>
+          Made by <a href="https://github.com/Andre-LA/">André Luiz Alvares</a><br/>
+          see <a href="https://github.com/Andre-LA/my-autotiler-toy">source code</a>.
+        </p>
         <TileEditor />
       </main>
     </div>

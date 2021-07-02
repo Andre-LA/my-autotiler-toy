@@ -1,67 +1,106 @@
-/*
-.App {
-  text-align: center;
+:root {
+  --main-bg-color: #3174ca;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/
 
 html {
   font-size: 10px;
 }
 
-#tile_preview {
-  line-height: 0px;
+body {
+  background-color: var(--main-bg-color);
+  line-height: 1.5;
+  font-family: serif;
 }
 
-.tilebutton {
+main {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5rem;
+  /*margin: 1rem 15%;*/
+}
+
+h1, h2 {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 0.1rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.5rem;
+  letter-spacing: 0.05;
+}
+
+h1 + p {
+  text-align: center;
+  padding-bottom: 2rem;
+  /*border-bottom: 2px dashed var(--main-bg-color);*/
+  margin: 0;
+}
+
+a {
+  color: #0050b7;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+a:link, a:visited {
+  color: #0050b7;
+}
+
+a:focus, a:hover {
+  color: #86461f;
+}
+
+a:active {
+  color: #b51f73;
+  border-width: 2px;
+}
+
+#tile_editor {
+  /*display: flex;*/
+  /*justify-content: center;*/
+  padding: 2rem 0rem;
+  border-top: 2px dashed var(--main-bg-color);
+  border-bottom: 2px dashed var(--main-bg-color);
+}
+
+.tile_editor_pannel {
+  /*margin: 1rem auto;*/
+  /*width: 50%;*/
+}
+
+#tile_editor_preview {
+  line-height: 0px;
+  background-color: #ffffff42;
+}
+
+.tile_button {
   width: 2rem;
   height: 2rem;
   margin: 1px;
   border: 1px solid black;
   border-radius: unset;
-  background-color: cyan;
+  background-color: var(--main-bg-color);
+  padding: 1px;
+  color: white;
 }
 
-.tilebutton:hover {
-  background-color: yellow;
+.tile_button:hover {
+  background-color: #dbb02f;
+  color: black;
 }
 
-.tilebutton.active_tile {
-  background-color: red;
+.tile_button:active {
+  background-color: black;
+  color: white;
+}
+
+.tile_button.active_tile {
+  background-color: #bf0900;
 }
 
 .tileImg {
