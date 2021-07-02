@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/my-autotiler-toy/static/css/main.9c308c99.chunk.css",
+    "main.js": "/my-autotiler-toy/static/js/main.4d3b4a36.chunk.js",
+    "main.js.map": "/my-autotiler-toy/static/js/main.4d3b4a36.chunk.js.map",
+    "runtime-main.js": "/my-autotiler-toy/static/js/runtime-main.9870196b.js",
+    "runtime-main.js.map": "/my-autotiler-toy/static/js/runtime-main.9870196b.js.map",
+    "static/js/2.79728fae.chunk.js": "/my-autotiler-toy/static/js/2.79728fae.chunk.js",
+    "static/js/2.79728fae.chunk.js.map": "/my-autotiler-toy/static/js/2.79728fae.chunk.js.map",
+    "static/js/3.e185cce8.chunk.js": "/my-autotiler-toy/static/js/3.e185cce8.chunk.js",
+    "static/js/3.e185cce8.chunk.js.map": "/my-autotiler-toy/static/js/3.e185cce8.chunk.js.map",
+    "index.html": "/my-autotiler-toy/index.html",
+    "static/css/main.9c308c99.chunk.css.map": "/my-autotiler-toy/static/css/main.9c308c99.chunk.css.map",
+    "static/js/2.79728fae.chunk.js.LICENSE.txt": "/my-autotiler-toy/static/js/2.79728fae.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9870196b.js",
+    "static/js/2.79728fae.chunk.js",
+    "static/css/main.9c308c99.chunk.css",
+    "static/js/main.4d3b4a36.chunk.js"
+  ]
+}
