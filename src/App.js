@@ -168,7 +168,8 @@ function App() {
         <h1>Autotiler toy<br/>simple autotiling and React experiment</h1>
         <p>
           Made by <a href="https://github.com/Andre-LA/">André Luiz Alvares</a><br/>
-          see <a href="https://github.com/Andre-LA/my-autotiler-toy">source code</a>.
+          see <a href="https://github.com/Andre-LA/my-autotiler-toy">source code</a>.<br/>
+          <a href="https://www.kenney.nl/assets/pixel-platformer">Tileset made by Kenney</a>.
         </p>
         <TileEditor />
       </main>
