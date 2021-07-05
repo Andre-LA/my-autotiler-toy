@@ -126,8 +126,8 @@ class TileEditor extends React.Component {
   }
 
   render() {
-    let tileEditor = [];
-    let tileMap = [];
+    let tileEditorButtons = [];
+    let tileMapTiles = [];
 
     let map = this.state.map;
     for (let i = 0; i < 50; i++) {
@@ -135,23 +135,23 @@ class TileEditor extends React.Component {
 
       let tileRegion = this.genTileRegion(i);
 
-      tileEditor.push(<TileButton tileIndex={i} onClick={this.handleClick} isActive={curTile} key={i} />);
+      tileEditorButtons.push(<TileButton tileIndex={i} onClick={this.handleClick} isActive={curTile} key={i} />);
 
-      tileMap.push(<TileImg key={i} isActive={curTile} tileRegion={tileRegion} tileIndex={i} />);
+      tileMapTiles.push(<TileImg key={i} isActive={curTile} tileRegion={tileRegion} tileIndex={i} />);
 
       if (i % 10 === 9) {
-        tileEditor.push(<br key={i + "_TE_br"}/>);
-        tileMap.push(<br key={i + "_TM_br"}/>);
+        tileEditorButtons.push(<br key={i + "_TE_br"}/>);
+        tileMapTiles.push(<br key={i + "_TM_br"}/>);
       }
     }
 
     return (
       <div id="tile_editor">
         <div className="tile_editor_pannel" id="tile_editor_buttons">
-          {tileEditor}
+            {tileEditorButtons}
         </div>
         <div className="tile_editor_pannel" id="tile_editor_preview">
-          {tileMap}
+            {tileMapTiles}
         </div>
       </div>
     );
