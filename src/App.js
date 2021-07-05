@@ -147,11 +147,15 @@ class TileEditor extends React.Component {
 
     return (
       <div id="tile_editor">
-        <div className="tile_editor_pannel" id="tile_editor_buttons">
+        <div className="tile_editor_pannel">
+          <div id="tile_editor_buttons">
             {tileEditorButtons}
+          </div>
         </div>
-        <div className="tile_editor_pannel" id="tile_editor_preview">
+        <div className="tile_editor_pannel">
+          <div id="tile_editor_preview">
             {tileMapTiles}
+          </div>
         </div>
       </div>
     );
