@@ -16,7 +16,7 @@ main {
   background-color: white;
   padding: 2rem;
   border-radius: 5rem;
-  /*margin: 1rem 15%;*/
+  min-width: 250px; /* 220px of tile editor + 20*2 or main's margin + 10px for safety */
 }
 
 h1, h2 {
