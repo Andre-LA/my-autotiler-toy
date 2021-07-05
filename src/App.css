@@ -73,6 +73,12 @@ a:active {
   justify-content: center;
 }
 
+#tile_editor_buttons {
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-bottom: dashed 1px var(--main-bg-color);
+}
+
 #tile_editor_preview {
   line-height: 0px;
   background-color: #ffffff42;
