@@ -161,7 +161,8 @@ class TileEditor extends React.Component {
     }
 
     return (
-      <div id="tile_editor">
+      <article id="tile_editor">
+        <h2>Tilemap Editor and Preview</h2>
         <div className="tile_editor_pannel">
           <div id="tile_editor_buttons">
             {tileEditorButtons}
@@ -172,22 +173,163 @@ class TileEditor extends React.Component {
             {tileMapTiles}
           </div>
         </div>
-      </div>
+      </article>
     );
   }
+}
+
+function Header() {
+  return (
+    <article>
+      <h1>Autotiler toy<br/>simple autotiling and React experiment</h1>
+      <p>
+        Made by <a href="https://github.com/Andre-LA/">André Luiz Alvares</a><br/>
+        see <a href="https://github.com/Andre-LA/my-autotiler-toy">source code</a>.<br/>
+        <a href="https://www.kenney.nl/assets/pixel-platformer">Tileset made by Kenney</a>.
+      </p>
+    </article>
+  )
+}
+
+function Article() {
+  return (
+    <article id="impl-details">
+      <h2>Explicação da implementação</h2>
+
+      <p><em>Note: This article is for now written in portuguese, it will soon be translated to english </em>😉</p>
+
+      <section>
+        <h3>O que é um Tilemap e Autotiling?</h3>
+
+        <p>
+          Há várias formas de se construir um cenário de um jogo, e uma das mais clássicas é
+          através dos chamados <em>Tilemaps</em>, que são a construção de um cenário através de pequenas
+          peças chamadas de <em>tiles</em>, essas tiles são usadas a partir de um conjunto dessas peças,
+          chamado de <em>tileset</em>.
+        </p>
+
+        <p>
+          Por exemplo, um tilemap de praia simples poderia ser criada a partir de um tileset de
+          apenas três tiles (mar, areia e espraiamento).
+        </p>
+
+        <p>
+          Entretanto, todo tilemap mais enxuto contém diversas tiles que se conectam e
+          precisam <strong>respeitar um certo padrão</strong>, usando o exemplo do editor acima,
+          num jogo 2D lateral onde temos uma tile de terra e outra também de terra, mas com sua
+          superfície coberta de neve, essa tile com neve só poderia ser utilizada se ela for
+          uma superfície, ou seja, não há tiles em cima dela.
+        </p>
+
+        <p>
+          Ou seja, existe a necessidade de colocar tiles específicos adequadamente, e este processo,
+          se feito de forma completamente manual, pode ser bem entediante e consumir muito tempo, além
+          de ser sucetível a erros. Felizmente há algumas técnicas para automatizar esse processo,
+          e por isso são chamadas de <em>autotiling</em>.
+        </p>
+      </section>
+
+      <section>
+        <h3>Como funciona um Autotiler de forma geral</h3>
+
+        <p>
+          Existem diferentes implementações de autotiling, algumas simples como a desta página,
+          e <a href="https://twitter.com/x_rxi/status/1276576637333770244">outras mais complexas</a>.
+        </p>
+
+        <p>
+          Autotilers mais complexos te permite maiores possibilidades de automatização para tilemaps
+          complexos, entretanto, para tilemaps simples essa complexidade pode também não compensar,
+          então sempre depende do seu caso específico.
+        </p>
+
+        <p>
+          Apesar das diferenças entre as implementações, a maioria (pra não dizer todas) se baseiam
+          no mesmo princípio, que é associar as tiles de uma tileset com padrões, também chamada de
+          regras em algumas implementações.
+        </p>
+
+        <p>
+          Um padrão (ou regra) por si só é um dado que guarda a existência ou inexistência de tiles
+          adjacentes à tile correspondente ao padrão, entretanto ele não é mutável e não guarda
+          "se há uma tile adjacente" em tempo de execução do jogo, ele apenas guarda a existência
+          e inexistência de tiles adjacentes, como se fosse um tipo de código ou identificação.
+        </p>
+
+        <p>
+          Esse padrão é utilizado para indicar quando uma certa tile deverá ser aplicada pelo
+          autotiler, usando exemplo anterior, uma tile coberta de neve só poderia ser
+          utilizada se não houver uma tile adjacente em cima; sendo assim, o padrão dessa tile
+          é a de que não deverá existir uma tile adjacente acima.
+        </p>
+
+        <p>
+          Sendo assim, o que um <em>autotiler</em> básico faz é receber um tilemap simples que
+          simplesmente indica a existência ou não de tiles, e então é convertido para um tilemap
+          mais complexo a partir da correspondências de cada tile com sua combinação de adjacências.
+        </p>
+
+        <p>
+          Como dito anteriormente, essa é uma premissa geral, como um autotiler realmente funciona
+          de forma mais detalhada depende da implementação, dois exemplos são os
+          softwares <a href="https://ldtk.io/">LDtk</a> e <a href="https://rxi.itch.io/tilekit">Tilekit</a>,
+          que são ferramentas de criação de tilemaps com a funcionalidade de autotiling.
+        </p>
+      </section>
+
+      <section>
+        <h3>Implementação deste autotiller</h3>
+
+        <p>
+          Essa seção abordará da implementação específica utilizada no editor acima, é recomendável
+          a leitura de outras fontes (citadas abaixo) para um entendimento melhor, mais abrangente
+          e com maiores horizontes, entretanto não é interesse desse artigo explicar a implementação
+          linha por linha, para isso, recomendo
+          a <a href="https://github.com/Andre-LA/my-autotiler-toy/blob/main/src/App.js">
+            leitura do código fonte
+          </a> diretamente, que está documentada de forma mais específica.
+        </p>
+
+        <p>
+          Como dito anteriormente, um autotiler obtém como entrada um "tilemap booliano" e um
+          conjunto de padrões (ou regras) associados às tiles de um tileset.
+        </p>
+
+        <p>
+          Com isso, ele consegue corresponder cada tile do tilemap com um dos padrões de acordo
+          com as tiles adjacentes à tile do tilemap, isto resulta numa tile do tileset, que
+          então será aplicada na posição da tile do tilemap, no final do processo um novo tilemap
+          será criado e finalmente retornado.
+        </p>
+
+        <p>
+          O padrão em si é representado por
+          um <a href="https://en.wikipedia.org/wiki/Bit_array">bitset</a> (também chamado de bitmask),
+          enquanto que o tilemap, no caso desta implementação, é inicialmente um arranjo de boolianas
+          e ao final do processo de autotiling se torna um arranjo de coordenadas (que se referem a posição
+          dos tile vindos do tileset).
+        </p>
+
+        <p>
+          Observação do Autor: Na verdade o autotiler não está retornando um arranjo de coordenadas, e sim
+          criando os tiles diretamente porque o autotiler está aplicado nas tiles e não como uma função
+          separada, eu preciso corrigir isto, pois acredito que modularizar esse processo numa função
+          tornará a implementação mais adequada.
+        </p>
+      </section>
+    </article>
+  )
 }
 
 function App() {
   return (
     <div className="App">
       <main>
-        <h1>Autotiler toy<br/>simple autotiling and React experiment</h1>
-        <p>
-          Made by <a href="https://github.com/Andre-LA/">André Luiz Alvares</a><br/>
-          see <a href="https://github.com/Andre-LA/my-autotiler-toy">source code</a>.<br/>
-          <a href="https://www.kenney.nl/assets/pixel-platformer">Tileset made by Kenney</a>.
-        </p>
+        <Header />
+
         <TileEditor />
+
+        <Article />
       </main>
     </div>
   );

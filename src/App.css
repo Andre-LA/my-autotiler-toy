@@ -19,14 +19,19 @@ main {
   min-width: 250px; /* 220px of tile editor + 20*2 or main's margin + 10px for safety */
 }
 
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
   font-size: 3rem;
   letter-spacing: 0.1rem;
 }
 
-h2 {
+h2, h3 {
+  margin: 2rem;
   font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
 }
 
 p {
@@ -60,12 +65,25 @@ a:active {
   border-width: 2px;
 }
 
+#impl-details {
+  max-width: 70%;
+  min-width: 250px;
+  margin: auto;
+}
+
+#impl-details p {
+  text-align: justify;
+}
+
 #tile_editor {
-  /*display: flex;*/
-  /*justify-content: center;*/
   padding: 2rem 0rem;
   border-top: 2px dashed var(--main-bg-color);
   border-bottom: 2px dashed var(--main-bg-color);
+}
+
+#tile_editor > h2 {
+  margin: 0;
+  margin-bottom: 2rem;
 }
 
 .tile_editor_pannel {
